@@ -1,0 +1,44 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
+
+namespace SMSDesktopUWP.Core.Models
+{
+    public class Orphan
+    {
+        [Key]
+        public int OrphanID { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string MiddleName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string FullName { get; set; }
+
+        public string Gender { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime DateOfBirth { get; set; }
+
+        public string LCMStatus { get; set; }
+
+        public string ProfileNumber { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Entry Date")]
+        public DateTime EntryDate { get; set; }
+
+        // Many to One
+        public int? GuardianID { get; set; }
+
+        // One to Many
+
+
+
+    }
+}
