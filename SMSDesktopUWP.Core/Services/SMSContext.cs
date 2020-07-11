@@ -32,10 +32,10 @@ namespace SMSDesktopUWP.Core.Services
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //string conStr = GetConnectionString("SMSCloudConnectionString");
-            string conStr = GetConnectionString("SMSLocalConnectionString");
+            string conn = GetConnectionString("SMSCloudConnectionString");
+            //string conn = GetConnectionString("SMSLocalConnectionString");
 
-            optionsBuilder.UseSqlServer(conStr);
+            optionsBuilder.UseSqlServer(conn);
 
             //optionsBuilder.UseSqlServer(
             //    @"Server=tcp:lcmsmsserver.database.windows.net,1433;Initial Catalog=SMSDatabase;Persist Security Info=False;User ID=pbolden;Password=K3nya4ever;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
@@ -53,7 +53,7 @@ namespace SMSDesktopUWP.Core.Services
 
             if (!string.IsNullOrWhiteSpace(conStr))
             {
-                return conStr;
+                return connectionString;
             }
             else
             {

@@ -20,8 +20,8 @@ namespace SMSDesktopUWP.Core.Models
         public DateTime EntryDate { get; set; }
 
         // Many to One
-        public int OrphanID { get; set; }
+        public int? OrphanID { get; set; }
 
-        public int GuardianID { get; set; }
+        public int? GuardianID { get; set; }
     }
 }

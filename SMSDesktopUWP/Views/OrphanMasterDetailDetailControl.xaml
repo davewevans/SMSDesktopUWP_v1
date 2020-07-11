@@ -15,40 +15,42 @@
         VerticalScrollMode="Enabled">
         <StackPanel HorizontalAlignment="Left">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                <FontIcon
+                <!--<FontIcon
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     FontSize="48"
-                    Glyph="{x:Bind MasterMenuItem.Symbol, Mode=OneWay}" />
+                    Glyph="/xE8D4" />-->
                 <TextBlock
                     Margin="{StaticResource SmallLeftMargin}"
                     VerticalAlignment="Center"
-                    Text="{x:Bind MasterMenuItem.Company, Mode=OneWay}"
+                    Text="{x:Bind MasterMenuItem.FullName, Mode=OneWay}"
                     Style="{ThemeResource TitleTextBlockStyle}" />
             </StackPanel>
             <StackPanel Name="block" Padding="0,15,0,0">
-                <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Status" />
-                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.Status, Mode=OneWay}" />
+                <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Gender" />
+                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}"
+                           Text="{x:Bind MasterMenuItem.Gender, Mode=OneWay}" />
                 <TextBlock
                     Margin="{StaticResource SmallTopMargin}"
                     Style="{StaticResource DetailSubTitleStyle}"
-                    Text="Order date" />
-                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.OrderDate, Mode=OneWay}" />
+                    Text="Birthday" />
+                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}"
+                           Text="{x:Bind MasterMenuItem.DateOfBirth, Mode=OneWay}" />
                 <TextBlock
                     Margin="{StaticResource SmallTopMargin}"
                     Style="{StaticResource DetailSubTitleStyle}"
-                    Text="Company" />
-                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.Company, Mode=OneWay}" />
+                    Text="Profile Number" />
+                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.ProfileNumber, Mode=OneWay}" />
                 <TextBlock
                     Margin="{StaticResource SmallTopMargin}"
                     Style="{StaticResource DetailSubTitleStyle}"
-                    Text="Ship to" />
-                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.ShipTo, Mode=OneWay}" />
-                <TextBlock
+                    Text="GuardianID" />
+                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.GuardianID, Mode=OneWay}" />
+                <!--<TextBlock
                     Margin="{StaticResource SmallTopMargin}"
                     Style="{StaticResource DetailSubTitleStyle}"
                     Text="Order total" />
-                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.OrderTotal, Mode=OneWay}" />
+                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.OrderTotal, Mode=OneWay}" />-->
 
                 <TextBlock
                     Margin="{StaticResource MediumTopMargin}"

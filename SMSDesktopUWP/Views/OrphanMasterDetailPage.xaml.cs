@@ -20,15 +20,24 @@ namespace SMSDesktopUWP.Views
 {
     public sealed partial class OrphanMasterDetailPage : Page, INotifyPropertyChanged
     {
-        private SampleOrder _selected;
+        //private SampleOrder _selected;
+        private Orphan _selected;
 
-        public SampleOrder Selected
+        //public SampleOrder Selected
+        //{
+        //    get { return _selected; }
+        //    set { Set(ref _selected, value); }
+        //}
+
+        public Orphan Selected
         {
             get { return _selected; }
             set { Set(ref _selected, value); }
         }
 
-        public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
+        //public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
+
+        public ObservableCollection<Orphan> OrphanItems { get; private set; } = new ObservableCollection<Orphan>();
 
         public OrphanMasterDetailPage()
         {
@@ -38,18 +47,22 @@ namespace SMSDesktopUWP.Views
 
         private async void OrphanMasterDetailPage_Loaded(object sender, RoutedEventArgs e)
         {
-            SampleItems.Clear();
+            //SampleItems.Clear();
+            OrphanItems.Clear();
 
-            var data = await SampleDataService.GetMasterDetailDataAsync();
+            //var data = await SampleDataService.GetMasterDetailDataAsync();
+            var data = await OrphanDataService.AllOrphans();
 
             foreach (var item in data)
             {
-                SampleItems.Add(item);
+                //SampleItems.Add(item);
+                OrphanItems.Add(item);
             }
 
             if (MasterDetailsViewControl.ViewState == MasterDetailsViewState.Both)
             {
-                Selected = SampleItems.FirstOrDefault();
+                //Selected = SampleItems.FirstOrDefault();
+                Selected = OrphanItems.FirstOrDefault();
             }
         }
 
