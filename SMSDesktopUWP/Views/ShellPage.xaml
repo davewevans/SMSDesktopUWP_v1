@@ -28,10 +28,11 @@
             Or to use an IconElement instead of a Symbol see https://github.com/Microsoft/WindowsTemplateStudio/blob/release/docs/UWP/projectTypes/navigationpane.md
             Edit String/en-US/Resources.resw: Add a menu item title for each page
             -->
-            <winui:NavigationViewItem x:Uid="Shell_Main" Icon="Document" helpers:NavHelper.NavigateTo="views:MainPage" />
-            <winui:NavigationViewItem x:Uid="Shell_OrphanMasterDetail" Icon="Document" helpers:NavHelper.NavigateTo="views:OrphanMasterDetailPage" />
-            <winui:NavigationViewItem x:Uid="Shell_GuardianMasterDetail" Icon="Document" helpers:NavHelper.NavigateTo="views:GuardianMasterDetailPage" />
-            <winui:NavigationViewItem x:Uid="Shell_SponsorMasterDetail" Icon="Document" helpers:NavHelper.NavigateTo="views:SponsorMasterDetailPage" />
+            <winui:NavigationViewItem x:Uid="Shell_Main" Icon="Home" helpers:NavHelper.NavigateTo="views:MainPage" />
+            <winui:NavigationViewItem x:Uid="Shell_OrphanMasterDetail" Icon="Contact2" helpers:NavHelper.NavigateTo="views:OrphanMasterDetailPage" />
+            <winui:NavigationViewItem x:Uid="Shell_GuardianMasterDetail" Icon="Contact" helpers:NavHelper.NavigateTo="views:GuardianMasterDetailPage" />
+            <winui:NavigationViewItem x:Uid="Shell_SponsorMasterDetail" Icon="World" helpers:NavHelper.NavigateTo="views:SponsorMasterDetailPage" />
+            <!--<winui:NavigationViewItem x:Uid="Shell_CommunicationMasterDetail" Icon="Mail" helpers:NavHelper.NavigateTo="views:CommunicationMasterDetailPage" />-->
         </winui:NavigationView.MenuItems>
         <i:Interaction.Behaviors>
             <behaviors:NavigationViewHeaderBehavior

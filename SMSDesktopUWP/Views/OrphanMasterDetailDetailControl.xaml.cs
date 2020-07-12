@@ -16,6 +16,11 @@ namespace SMSDesktopUWP.Views
             set { SetValue(MasterMenuItemProperty, value); }
         }
 
+        public char SymbolDisplay
+        {
+            get { return (char)57661; }
+        }
+
         //public static readonly DependencyProperty MasterMenuItemProperty = DependencyProperty.Register("MasterMenuItem", typeof(SampleOrder), typeof(OrphanMasterDetailDetailControl), new PropertyMetadata(null, OnMasterMenuItemPropertyChanged));
         public static readonly DependencyProperty MasterMenuItemProperty =
             DependencyProperty.Register("MasterMenuItem", typeof(Orphan), typeof(OrphanMasterDetailDetailControl), new PropertyMetadata(null, OnMasterMenuItemPropertyChanged));

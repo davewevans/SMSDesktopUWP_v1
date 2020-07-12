@@ -23,13 +23,12 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Image Width="90"
-                       Source="~/Assets/StoreLogo.png"/>
-                <!--<FontIcon
+                <FontIcon
                     Grid.Column="0"
                     VerticalAlignment="Center"
                     FontSize="32"
-                    Glyph="\xE8D4" />-->
+                    FontFamily="Segoe MDL2 Assets"
+                    Glyph="&#xE8D4;" />
                 <StackPanel
                     Grid.Column="1"
                     Margin="{StaticResource SmallLeftMargin}"
