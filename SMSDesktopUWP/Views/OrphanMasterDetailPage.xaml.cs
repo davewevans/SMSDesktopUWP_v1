@@ -23,6 +23,10 @@ namespace SMSDesktopUWP.Views
         //private SampleOrder _selected;
         private Orphan _selected;
 
+        //list for AutoSuggestBox
+        public List<Orphan> orphanList = new List<Orphan>();
+        List<Orphan> listOrphanSuggestion = null;
+
         //public SampleOrder Selected
         //{
         //    get { return _selected; }
@@ -64,6 +68,10 @@ namespace SMSDesktopUWP.Views
                 //Selected = SampleItems.FirstOrDefault();
                 Selected = OrphanItems.FirstOrDefault();
             }
+
+            //Initialize the autoSuggestBox with orphans
+            //orphanSearchList = OrphanItems.ToList();
+            //txtAutoSuggest.ItemsSource = orphanSearchList;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -80,5 +88,48 @@ namespace SMSDesktopUWP.Views
         }
 
         private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        private void AutoSuggestionBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            orphanList = OrphanItems.ToList();
+
+            // Only get results when it was a user typing,
+            // otherwise assume the value got filled in by TextMemberPath
+            // or the handler for SuggestionChosen.
+            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+            {
+                //Set the ItemsSource to be your filtered dataset
+                listOrphanSuggestion = orphanList.Where(o => o.FullName.Contains(sender.Text)).ToList();
+                sender.ItemsSource = listOrphanSuggestion;
+            }
+        }
+
+        private void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+        {
+            // Set sender.Text. You can use args.SelectedItem to build your text string.
+            var selectedItem = args.SelectedItem as Orphan;
+            sender.Text = selectedItem.FullName;
+
+            Selected = selectedItem;
+
+        }
+
+        private void AutoSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+            //if (args.ChosenSuggestion != null)
+            //{
+            //    // User selected an item from the suggestion list, take an action on it here.
+
+            //}
+            //else
+            //{
+            //    // Use args.QueryText to determine what to do.
+            //}
+
+            var searchTerm = args.QueryText;
+            var results = orphanList.Where(i => i.FullName.Contains(searchTerm)).ToList();
+            sender.ItemsSource = results;
+            sender.IsSuggestionListOpen = true;
+        }
     }
 }

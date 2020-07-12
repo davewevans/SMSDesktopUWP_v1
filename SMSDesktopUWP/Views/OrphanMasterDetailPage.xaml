@@ -53,17 +53,27 @@
                     VerticalAlignment="Center"
                     Style="{StaticResource SubtitleTextBlockStyle}"
                     TextAlignment="Center" />
+                <!-- Put an Add Orphan button in here !-->
             </Grid>
         </DataTemplate>
-
         <DataTemplate x:Key="MasterHeaderTemplate">
-            <Grid Height="40">
+            <StackPanel>
                 <TextBlock
                     x:Name="headerText"
                     VerticalAlignment="Center"
                     Style="{StaticResource ListTitleStyle}"
                     Text="{Binding}" />
-            </Grid>
+                <AutoSuggestBox
+                    x:Name="txtAutoSuggest"
+                    PlaceholderText="Search orphan name"
+                    DisplayMemberPath="FullName"
+                    TextMemberPath="FullName"
+                    QueryIcon="Find"
+                    TextChanged="AutoSuggestionBox_TextChanged"
+                    QuerySubmitted="AutoSuggestBox_QuerySubmitted"
+                    SuggestionChosen="AutoSuggestBox_SuggestionChosen"
+                    Margin="0,5" />
+            </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="MinimalMasterHeaderTemplate">
             <Grid Height="40">

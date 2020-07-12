@@ -12,6 +12,9 @@
             <!--
                 The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
                 Place your content here.
+
+                It will eventually be perhaps charts and other summary information
+                and news events for Life For Children.
             -->
         </Grid>
     </Grid>
