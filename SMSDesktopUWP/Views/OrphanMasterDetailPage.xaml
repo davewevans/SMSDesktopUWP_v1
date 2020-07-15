@@ -63,6 +63,7 @@
                     VerticalAlignment="Center"
                     Style="{StaticResource ListTitleStyle}"
                     Text="{Binding}" />
+
                 <AutoSuggestBox
                     x:Name="txtAutoSuggest"
                     PlaceholderText="Search orphan name"
@@ -73,6 +74,7 @@
                     QuerySubmitted="AutoSuggestBox_QuerySubmitted"
                     SuggestionChosen="AutoSuggestBox_SuggestionChosen"
                     Margin="0,5" />
+
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="MinimalMasterHeaderTemplate">

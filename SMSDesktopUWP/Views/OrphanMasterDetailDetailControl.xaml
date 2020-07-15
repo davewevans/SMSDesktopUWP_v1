@@ -14,6 +14,11 @@
         Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
         VerticalScrollMode="Enabled">
         <StackPanel HorizontalAlignment="Left">
+            <CommandBar>
+                <AppBarButton x:Name="btnAdd" Icon="Add" Click="btnAdd_Click"/>
+                <AppBarButton x:Name="btnEdit" Icon="Edit" />
+                <AppBarButton x:Name="btnDelete" Icon="Delete" />
+            </CommandBar>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                 <FontIcon
                     HorizontalAlignment="Center"
@@ -35,7 +40,7 @@
                     Style="{StaticResource DetailSubTitleStyle}"
                     Text="Birthday" />
                 <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}"
-                           Text="{x:Bind MasterMenuItem.DateOfBirth, Mode=OneWay}" />
+                           Text="{x:Bind MasterMenuItem.DateOfBirth.ToShortDateString(), Mode=OneWay}" />
                 <TextBlock
                     Margin="{StaticResource SmallTopMargin}"
                     Style="{StaticResource DetailSubTitleStyle}"
@@ -46,12 +51,6 @@
                     Style="{StaticResource DetailSubTitleStyle}"
                     Text="GuardianID" />
                 <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.GuardianID, Mode=OneWay}" />
-                <!--<TextBlock
-                    Margin="{StaticResource SmallTopMargin}"
-                    Style="{StaticResource DetailSubTitleStyle}"
-                    Text="Order total" />
-                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.OrderTotal, Mode=OneWay}" />-->
-
                 <TextBlock
                     Margin="{StaticResource MediumTopMargin}"
                     Style="{StaticResource DetailSubTitleStyle}"

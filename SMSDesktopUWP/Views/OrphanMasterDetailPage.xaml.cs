@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 using Microsoft.Toolkit.Uwp.UI.Controls;
-
+using Microsoft.Toolkit.Uwp.UI.Triggers;
 using SMSDesktopUWP.Core.Models;
 using SMSDesktopUWP.Core.Services;
 
@@ -69,9 +69,6 @@ namespace SMSDesktopUWP.Views
                 Selected = OrphanItems.FirstOrDefault();
             }
 
-            //Initialize the autoSuggestBox with orphans
-            //orphanSearchList = OrphanItems.ToList();
-            //txtAutoSuggest.ItemsSource = orphanSearchList;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -98,9 +95,20 @@ namespace SMSDesktopUWP.Views
             // or the handler for SuggestionChosen.
             if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
             {
+                //
+                // Boom:  David nailed this.
+                //
+                // Added ToLower() calls to normalize text 
+                //
                 //Set the ItemsSource to be your filtered dataset
-                listOrphanSuggestion = orphanList.Where(o => o.FullName.Contains(sender.Text)).ToList();
+                listOrphanSuggestion = orphanList.Where(o => o.FullName.ToLower().Contains(sender.Text.ToLower())).ToList();
                 sender.ItemsSource = listOrphanSuggestion;
+
+                //
+                // Added this to refresh the items source
+                //
+                MasterDetailsViewControl.ItemsSource = listOrphanSuggestion;
+
             }
         }
 
@@ -116,15 +124,6 @@ namespace SMSDesktopUWP.Views
 
         private void AutoSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
-            //if (args.ChosenSuggestion != null)
-            //{
-            //    // User selected an item from the suggestion list, take an action on it here.
-
-            //}
-            //else
-            //{
-            //    // Use args.QueryText to determine what to do.
-            //}
 
             var searchTerm = args.QueryText;
             var results = orphanList.Where(i => i.FullName.Contains(searchTerm)).ToList();
