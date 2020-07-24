@@ -14,11 +14,11 @@
         Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
         VerticalScrollMode="Enabled">
         <StackPanel HorizontalAlignment="Left">
-            <CommandBar>
+            <!--<CommandBar>
                 <AppBarButton x:Name="btnAdd" Icon="Add" Click="btnAdd_Click"/>
                 <AppBarButton x:Name="btnEdit" Icon="Edit" />
                 <AppBarButton x:Name="btnDelete" Icon="Delete" />
-            </CommandBar>
+            </CommandBar>-->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                 <FontIcon
                     HorizontalAlignment="Center"

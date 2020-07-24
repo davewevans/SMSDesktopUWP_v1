@@ -40,9 +40,17 @@
         </DataTemplate>
 
         <DataTemplate x:Key="DetailsTemplate">
-            <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <!--<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
                 <views:OrphanMasterDetailDetailControl MasterMenuItem="{Binding}" />
-            </Grid>
+            </Grid>-->
+            <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                <CommandBar>
+                    <AppBarButton x:Name="btnAdd" Icon="Add" Click="btnAdd_Click_1"/>
+                    <AppBarButton x:Name="btnEdit" Icon="Edit" Click="btnEdit_Click" />
+                    <AppBarButton x:Name="btnDelete" Icon="Delete" />
+                </CommandBar>
+                <views:OrphanMasterDetailDetailControl MasterMenuItem="{Binding}" />
+            </StackPanel>
         </DataTemplate>
 
         <DataTemplate x:Key="NoSelectionContentTemplate">

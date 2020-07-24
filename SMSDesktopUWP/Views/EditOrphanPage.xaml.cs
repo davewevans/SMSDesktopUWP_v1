@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SMSDesktopUWP.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,11 +21,29 @@ namespace SMSDesktopUWP.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class NewOrphanPage : Page
+    public sealed partial class EditOrphanPage : Page
     {
-        public NewOrphanPage()
+        private Orphan _inOrphan;
+
+        public Orphan InOrphan
+        {
+            get { return _inOrphan; }
+            set { _inOrphan = value; }
+        }
+
+        public EditOrphanPage()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter != null)
+            {
+                InOrphan = (Orphan)e.Parameter;
+            }
+
+            base.OnNavigatedTo(e);
         }
     }
 }

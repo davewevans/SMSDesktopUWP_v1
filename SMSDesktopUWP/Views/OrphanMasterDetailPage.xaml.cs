@@ -130,5 +130,15 @@ namespace SMSDesktopUWP.Views
             sender.ItemsSource = results;
             sender.IsSuggestionListOpen = true;
         }
+
+        private void btnAdd_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(EditOrphanPage));
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(EditOrphanPage), Selected);
+        }
     }
 }

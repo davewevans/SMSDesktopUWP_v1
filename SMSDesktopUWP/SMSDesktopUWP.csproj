@@ -152,8 +152,8 @@
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NewOrphanPage.xaml.cs">
-      <DependentUpon>NewOrphanPage.xaml</DependentUpon>
+    <Compile Include="Views\EditOrphanPage.xaml.cs">
+      <DependentUpon>EditOrphanPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OrphanMasterDetailDetailControl.xaml.cs">
       <DependentUpon>OrphanMasterDetailDetailControl.xaml</DependentUpon>
@@ -213,7 +213,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\NewOrphanPage.xaml">
+    <Page Include="Views\EditOrphanPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
