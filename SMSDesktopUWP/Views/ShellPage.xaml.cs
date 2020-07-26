@@ -52,6 +52,7 @@ namespace SMSDesktopUWP.Views
             NavigationService.NavigationFailed += Frame_NavigationFailed;
             NavigationService.Navigated += Frame_Navigated;
             navigationView.BackRequested += OnBackRequested;
+
         }
 
         private async void OnLoaded(object sender, RoutedEventArgs e)

@@ -40,9 +40,17 @@
         </DataTemplate>
 
         <DataTemplate x:Key="DetailsTemplate">
-            <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <!--<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
                 <views:OrphanMasterDetailDetailControl MasterMenuItem="{Binding}" />
-            </Grid>
+            </Grid>-->
+            <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                <CommandBar>
+                    <AppBarButton x:Name="btnAdd" Icon="Add" Click="btnAdd_Click_1"/>
+                    <AppBarButton x:Name="btnEdit" Icon="Edit" Click="btnEdit_Click" />
+                    <AppBarButton x:Name="btnDelete" Icon="Delete" Click="btnDelete_Click"/>
+                </CommandBar>
+                <views:OrphanMasterDetailDetailControl MasterMenuItem="{Binding}" />
+            </StackPanel>
         </DataTemplate>
 
         <DataTemplate x:Key="NoSelectionContentTemplate">
@@ -63,6 +71,7 @@
                     VerticalAlignment="Center"
                     Style="{StaticResource ListTitleStyle}"
                     Text="{Binding}" />
+
                 <AutoSuggestBox
                     x:Name="txtAutoSuggest"
                     PlaceholderText="Search orphan name"
@@ -73,6 +82,7 @@
                     QuerySubmitted="AutoSuggestBox_QuerySubmitted"
                     SuggestionChosen="AutoSuggestBox_SuggestionChosen"
                     Margin="0,5" />
+
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="MinimalMasterHeaderTemplate">

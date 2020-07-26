@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 using Microsoft.Toolkit.Uwp.UI.Controls;
-
+using Microsoft.Toolkit.Uwp.UI.Triggers;
 using SMSDesktopUWP.Core.Models;
 using SMSDesktopUWP.Core.Services;
 
@@ -68,10 +68,28 @@ namespace SMSDesktopUWP.Views
                 //Selected = SampleItems.FirstOrDefault();
                 Selected = OrphanItems.FirstOrDefault();
             }
+        }
 
-            //Initialize the autoSuggestBox with orphans
-            //orphanSearchList = OrphanItems.ToList();
-            //txtAutoSuggest.ItemsSource = orphanSearchList;
+        private async void LoadOrphans()
+        {
+            //SampleItems.Clear();
+            OrphanItems.Clear();
+
+            //var data = await SampleDataService.GetMasterDetailDataAsync();
+            var data = await OrphanDataService.AllOrphans();
+
+            foreach (var item in data)
+            {
+                //SampleItems.Add(item);
+                OrphanItems.Add(item);
+            }
+
+            if (MasterDetailsViewControl.ViewState == MasterDetailsViewState.Both)
+            {
+                //Selected = SampleItems.FirstOrDefault();
+                Selected = OrphanItems.FirstOrDefault();
+            }
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -98,9 +116,20 @@ namespace SMSDesktopUWP.Views
             // or the handler for SuggestionChosen.
             if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
             {
+                //
+                // Boom:  David nailed this.
+                //
+                // Added ToLower() calls to normalize text 
+                //
                 //Set the ItemsSource to be your filtered dataset
-                listOrphanSuggestion = orphanList.Where(o => o.FullName.Contains(sender.Text)).ToList();
+                listOrphanSuggestion = orphanList.Where(o => o.FullName.ToLower().Contains(sender.Text.ToLower())).ToList();
                 sender.ItemsSource = listOrphanSuggestion;
+
+                //
+                // Added this to refresh the items source
+                //
+                MasterDetailsViewControl.ItemsSource = listOrphanSuggestion;
+
             }
         }
 
@@ -116,20 +145,57 @@ namespace SMSDesktopUWP.Views
 
         private void AutoSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
-            //if (args.ChosenSuggestion != null)
-            //{
-            //    // User selected an item from the suggestion list, take an action on it here.
-
-            //}
-            //else
-            //{
-            //    // Use args.QueryText to determine what to do.
-            //}
 
             var searchTerm = args.QueryText;
             var results = orphanList.Where(i => i.FullName.Contains(searchTerm)).ToList();
             sender.ItemsSource = results;
             sender.IsSuggestionListOpen = true;
+        }
+
+        private void btnAdd_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(EditOrphanPage));
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(EditOrphanPage), Selected);
+        }
+
+        private async void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            // Delete confirmation
+            if (Selected != null)
+            {
+                ContentDialog notifyDelete = new ContentDialog()
+                {
+                    Title = "Confirm delete?",
+                    Content = "Are you sure you wish to delete " + Selected.FullName + "?",
+                    PrimaryButtonText = "Delete Orphan",
+                    SecondaryButtonText = "Cancel"
+
+                };
+
+                ContentDialogResult result = await notifyDelete.ShowAsync();
+                if (result == ContentDialogResult.Primary)
+                {
+                    // Delete
+                    OrphanDataService.DeleteOrphan(Selected);
+
+                    // Clear search text box
+                    // Can't get to it because it's inside a data template!
+
+                    // Repopulate the list
+                    LoadOrphans();
+                }
+                else
+                {
+                    // User pressed Cancel or the back arrow.
+                    
+                }
+            }
+
+
         }
     }
 }
