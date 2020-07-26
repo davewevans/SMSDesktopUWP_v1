@@ -125,6 +125,84 @@ namespace SMSDesktopUWP.Core.Services
 
         }
 
+        public static async void AddOrphan(Orphan inOrphan)
+        {
+            try
+            {
+                // Replace this with the API code.
+                using (var context = new SMSContext())
+                {
+                    context.Orphans.Add(inOrphan);
+                    await context.SaveChangesAsync();
+                }
+
+            }
+            catch (Exception eSql)
+            {
+                // Your code may benefit from more robust error handling or logging.
+                // This logging is just a reminder that you should handle exceptions when connecting to remote data.
+                System.Diagnostics.Debug.WriteLine($"Exception: {eSql.Message} {eSql.InnerException?.Message}");
+            }
+        }
+
+        public static async void SaveOrphan(Orphan inOrphan)
+        {
+            try
+            {
+                // Replace this with the API code.
+                using (var context = new SMSContext())
+                {
+
+                    var updatedOrphan = context.Orphans.Single(c => c.OrphanID == inOrphan.OrphanID);
+
+                    updatedOrphan.OrphanID = inOrphan.OrphanID;
+                    updatedOrphan.FirstName = inOrphan.FirstName;
+                    updatedOrphan.LastName = inOrphan.LastName;
+                    updatedOrphan.MiddleName = inOrphan.MiddleName;
+                    updatedOrphan.FullName = inOrphan.FullName;
+                    if (inOrphan.GuardianID != 0)
+                    {
+                        updatedOrphan.GuardianID = inOrphan.GuardianID;
+                    }
+                    updatedOrphan.LCMStatus = inOrphan.LCMStatus;
+                    updatedOrphan.ProfileNumber = inOrphan.ProfileNumber;
+                    updatedOrphan.Gender = inOrphan.Gender;
+                    updatedOrphan.EntryDate = inOrphan.EntryDate;
+                    updatedOrphan.DateOfBirth = inOrphan.DateOfBirth;
+
+                    context.Orphans.Update(updatedOrphan);
+                    await context.SaveChangesAsync();
+                }
+
+            }
+            catch (Exception eSql)
+            {
+                // Your code may benefit from more robust error handling or logging.
+                // This logging is just a reminder that you should handle exceptions when connecting to remote data.
+                System.Diagnostics.Debug.WriteLine($"Exception: {eSql.Message} {eSql.InnerException?.Message}");
+            }
+
+        }
+
+        public static async void DeleteOrphan(Orphan inOrphan)
+        {
+            try
+            {
+                // Replace with API code
+                using (var context = new SMSContext())
+                {
+                    context.Orphans.Remove(inOrphan);
+                    await context.SaveChangesAsync();
+                }
+            }
+            catch (Exception eSql)
+            {
+                // Your code may benefit from more robust error handling or logging.
+                // This logging is just a reminder that you should handle exceptions when connecting to remote data.
+                System.Diagnostics.Debug.WriteLine($"Exception: {eSql.Message} {eSql.InnerException?.Message}");
+            }
+
+        }
 
     }
 }

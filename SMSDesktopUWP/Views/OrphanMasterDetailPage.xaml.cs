@@ -68,6 +68,27 @@ namespace SMSDesktopUWP.Views
                 //Selected = SampleItems.FirstOrDefault();
                 Selected = OrphanItems.FirstOrDefault();
             }
+        }
+
+        private async void LoadOrphans()
+        {
+            //SampleItems.Clear();
+            OrphanItems.Clear();
+
+            //var data = await SampleDataService.GetMasterDetailDataAsync();
+            var data = await OrphanDataService.AllOrphans();
+
+            foreach (var item in data)
+            {
+                //SampleItems.Add(item);
+                OrphanItems.Add(item);
+            }
+
+            if (MasterDetailsViewControl.ViewState == MasterDetailsViewState.Both)
+            {
+                //Selected = SampleItems.FirstOrDefault();
+                Selected = OrphanItems.FirstOrDefault();
+            }
 
         }
 
@@ -139,6 +160,42 @@ namespace SMSDesktopUWP.Views
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(EditOrphanPage), Selected);
+        }
+
+        private async void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            // Delete confirmation
+            if (Selected != null)
+            {
+                ContentDialog notifyDelete = new ContentDialog()
+                {
+                    Title = "Confirm delete?",
+                    Content = "Are you sure you wish to delete " + Selected.FullName + "?",
+                    PrimaryButtonText = "Delete Orphan",
+                    SecondaryButtonText = "Cancel"
+
+                };
+
+                ContentDialogResult result = await notifyDelete.ShowAsync();
+                if (result == ContentDialogResult.Primary)
+                {
+                    // Delete
+                    OrphanDataService.DeleteOrphan(Selected);
+
+                    // Clear search text box
+                    // Can't get to it because it's inside a data template!
+
+                    // Repopulate the list
+                    LoadOrphans();
+                }
+                else
+                {
+                    // User pressed Cancel or the back arrow.
+                    
+                }
+            }
+
+
         }
     }
 }

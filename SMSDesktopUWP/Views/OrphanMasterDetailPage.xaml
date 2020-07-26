@@ -47,7 +47,7 @@
                 <CommandBar>
                     <AppBarButton x:Name="btnAdd" Icon="Add" Click="btnAdd_Click_1"/>
                     <AppBarButton x:Name="btnEdit" Icon="Edit" Click="btnEdit_Click" />
-                    <AppBarButton x:Name="btnDelete" Icon="Delete" />
+                    <AppBarButton x:Name="btnDelete" Icon="Delete" Click="btnDelete_Click"/>
                 </CommandBar>
                 <views:OrphanMasterDetailDetailControl MasterMenuItem="{Binding}" />
             </StackPanel>

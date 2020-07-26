@@ -38,6 +38,16 @@ namespace SMSDesktopUWP.Core.Models
 
         // One to Many
 
+        // Calculated
+        public int Age
+        {
+            get
+            {
+                return (int)Math.Floor((DateTime.Now - this.DateOfBirth).TotalDays / 365.242199);
+            }
+        }
+
+
 
 
     }

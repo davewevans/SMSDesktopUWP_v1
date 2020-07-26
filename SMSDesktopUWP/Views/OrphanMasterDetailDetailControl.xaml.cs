@@ -13,7 +13,6 @@ namespace SMSDesktopUWP.Views
 
         public event OrphanEventHandler OnNavigateParentReady;
 
-
         public Orphan MasterMenuItem
         {
             //get { return GetValue(MasterMenuItemProperty) as SampleOrder; }

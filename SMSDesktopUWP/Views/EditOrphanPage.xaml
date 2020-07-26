@@ -28,7 +28,7 @@
                 Text="First Name" />
             <TextBox
                 x:Name="txtFirstName"
-                Text="{x:Bind InOrphan.FirstName}"
+                Text="{x:Bind InOrphan.FirstName, Mode=TwoWay}"
                 Margin="10,0,0,20"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Left"
@@ -41,7 +41,7 @@
                 Text="Middle Name" />
             <TextBox
                 x:Name="txtMiddleName"
-                Text="{x:Bind InOrphan.MiddleName}"
+                Text="{x:Bind InOrphan.MiddleName, Mode=TwoWay}"
                 Margin="10,0,0,20"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Left"
@@ -54,7 +54,7 @@
                 Text="Last Name" />
             <TextBox
                 x:Name="txtLastName"
-                Text="{x:Bind InOrphan.LastName}"
+                Text="{x:Bind InOrphan.LastName, Mode=TwoWay}"
                 Margin="10,0,0,20"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Left"
@@ -67,7 +67,7 @@
                 Text="Gender" />
             <TextBox
                 x:Name="txtGender"
-                Text="{x:Bind InOrphan.Gender}"
+                Text="{x:Bind InOrphan.Gender, Mode=TwoWay}"
                 Margin="10,0,0,20"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Left"
@@ -82,7 +82,7 @@
                 Date="{x:Bind InOrphan.DateOfBirth}"
                 Margin="10,0,0,20"
                 Width="200"
-                x:Name="DateOfBirth" />
+                x:Name="dtDateOfBirth" />
 
             <TextBlock
                 Margin="10,20,0,0"
@@ -91,7 +91,7 @@
                 Text="LCM Status" />
             <TextBox
                 x:Name="txtLCMStatus"
-                Text="{x:Bind InOrphan.LCMStatus}"
+                Text="{x:Bind InOrphan.LCMStatus, Mode=TwoWay}"
                 Margin="10,0,0,20"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Left"
@@ -103,21 +103,23 @@
                 Style="{StaticResource ListTitleStyle}"
                 Text="Entry Date" />
             <CalendarDatePicker
-                Date="{x:Bind InOrphan.DateOfBirth}"
+                Date="{x:Bind InOrphan.EntryDate}"
                 Margin="10,0,0,20"
                 Width="200"
-                x:Name="EntryDate" />
+                x:Name="dtEntryDate" />
 
             <StackPanel Orientation="Horizontal">
                 <Button
                     x:Name="btnSave"
                     Margin="70,40, 0, 0"
                     Width="100"
+                    Click="btnSave_Click"
                     Content="Save" />
                 <Button
                     x:Name="btnCancel"
                     Margin="60,40,0,0"
                     Width="100"
+                    Click="btnCancel_Click"
                     Content="Cancel" />
             </StackPanel>
         </StackPanel>
